@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Carlos Palma Marín — Tehuacán merece vivir en paz</title>
+<meta name="description" content="Tehuacán merece vivir en paz. Súmate al movimiento por la paz de Tehuacán con el Dr. Carlos Palma Marín.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #2b2b2b;
+    background: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img, video { max-width: 100%; height: auto; display: block; }
+  a { color: #682575; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header blanco: los logos van sobre fondo claro, enteros, sin recortar */
+  header { background: #ffffff; padding: 18px 0 12px; text-align: center; border-bottom: 4px solid #682575; }
+  .logos { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .logos img { height: 92px; width: auto; }
+  .logos img.logo-paz { height: 110px; }
+
+  /* Hero */
+  .hero { background: #682575; color: #ffffff; text-align: center; padding: 48px 0 56px; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  .hero p.lead { font-size: clamp(1.05rem, 3vw, 1.3rem); font-weight: 500; max-width: 720px; margin: 0 auto 28px; }
+  .hero p.lead strong { color: #ffd76a; }
+  .video-box { max-width: 800px; margin: 0 auto 28px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.35); background: #000; }
+  .video-box video { width: 100%; aspect-ratio: 16 / 9; }
+  .video-caption { font-size: .95rem; opacity: .9; margin-top: 10px; }
+  .btn {
+    display: inline-block; background: #f5b90d; color: #3a1340; font-weight: 800;
+    font-size: 1.1rem; padding: 15px 34px; border-radius: 999px; text-decoration: none;
+    border: none; cursor: pointer; font-family: inherit;
+  }
+  .btn:hover { background: #ffcf3d; }
+  .btn-green { background: #25d366; color: #ffffff; }
+  .btn-green:hover { background: #1eb856; }
+  .btn-outline { background: transparent; color: #682575; border: 2px solid #682575; margin-top: 14px; }
+
+  /* Vision */
+  .vision { padding: 56px 0; background: #ffffff; text-align: center; }
+  .vision h2 { color: #682575; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 14px; }
+  .vision > .wrap > p { max-width: 720px; margin: 0 auto 12px; }
+  .values { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 24px 0 32px; list-style: none; }
+  .values li {
+    background: #f3e8f5; color: #682575; font-weight: 700;
+    padding: 10px 18px; border-radius: 999px; font-size: .95rem;
+  }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
+  .pillar { background: #faf5fb; border: 1px solid #e8d5ea; border-radius: 14px; padding: 22px; }
+  .pillar .icon { font-size: 2rem; line-height: 1; margin-bottom: 10px; }
+  .pillar h3 { color: #682575; font-size: 1.15rem; margin-bottom: 6px; }
+  .pillar p { font-size: .95rem; }
+
+  /* Form */
+  .registro { background: #f7f1f8; padding: 56px 0; }
+  .registro h2 { color: #682575; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; text-align: center; margin-bottom: 10px; }
+  .registro .intro { text-align: center; max-width: 640px; margin: 0 auto 28px; }
+  form { background: #ffffff; max-width: 560px; margin: 0 auto; padding: 28px; border-radius: 16px; box-shadow: 0 8px 24px rgba(104,37,117,.12); }
+  label { display: block; font-weight: 700; color: #682575; margin-bottom: 6px; }
+  input {
+    width: 100%; padding: 13px 14px; border: 2px solid #d9c2dc; border-radius: 10px;
+    font-family: inherit; font-size: 1rem; margin-bottom: 18px;
+  }
+  input:focus { outline: none; border-color: #682575; }
+  form .btn { width: 100%; }
+  .success { display: none; background: #ffffff; max-width: 560px; margin: 0 auto; padding: 28px; border-radius: 16px; box-shadow: 0 8px 24px rgba(104,37,117,.12); text-align: center; }
+  .success h3 { color: #682575; font-size: 1.4rem; margin-bottom: 10px; }
+  .success p { margin-bottom: 14px; }
+  .success .btn-green { display: inline-block; margin: 6px 0 4px; }
+  .success small { display: block; color: #666; margin-top: 10px; }
+
+  /* Footer */
+  footer { background: #3a1340; color: #ffffff; padding: 40px 0 28px; text-align: center; }
+  footer .lema { font-weight: 700; font-size: 1.05rem; margin-bottom: 14px; }
+  footer .social { margin-bottom: 16px; }
+  footer .social a { color: #ffd76a; font-weight: 700; margin: 0 10px; }
+  footer .tags { color: #e8c8ec; margin-bottom: 16px; }
+  footer .privacy { font-size: .85rem; opacity: .85; max-width: 640px; margin: 0 auto; }
+
+  @media (max-width: 640px) {
+    .pillars { grid-template-columns: 1fr; }
+    .logos img { height: 72px; }
+    .logos img.logo-paz { height: 86px; }
+    form, .success { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap logos">
+    <img class="logo-paz" src="assets/logo-paz-oficial.jpg" alt="Logotipo oficial de Partido PAZ">
+    <img src="assets/logo-carlos-palma-hablemos-de-paz.jpg" alt="Carlos Palma — Hablemos de Paz">
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Tehuacán merece vivir en paz</h1>
+    <p class="lead">Yo creo que la paz se construye todos los días: en casa, en el barrio y en la ciudad. Soy el <strong>Dr. Carlos Palma Marín</strong> y te invito a ser parte de ella, con tu familia y con tus vecinos.</p>
+    <div class="video-box">
+      <video controls preload="metadata" poster="assets/poster-video.jpg">
+        <source src="assets/video-oficial-dr-carlos-palma-v3.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+    </div>
+    <p class="video-caption">Mensaje del Dr. Carlos Palma Marín</p>
+    <p style="margin-top: 20px;"><a class="btn" href="#registro">Súmate al cambio</a></p>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap">
+    <h2>Hablemos de paz</h2>
+    <p>La paz no es solo una palabra. Es saludar a tu vecino, es cuidarnos entre todos, es que nadie se sienta solo en su calle. En Tehuacán somos una comunidad, y una comunidad unida nadie la detiene.</p>
+    <p>Estos son los valores que nos mueven:</p>
+    <ul class="values">
+      <li>💜 Tranquilidad</li>
+      <li>🤝 Comunidad</li>
+      <li>🕊️ Acuerdos reales</li>
+      <li>✨ Liderazgo</li>
+    </ul>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="icon">🏠</div>
+        <h3>Familia</h3>
+        <p>La familia es el centro de todo. La paz empieza en casa, con el ejemplo, el respeto y el cariño de todos los días.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🛡️</div>
+        <h3>Calles seguras</h3>
+        <p>Calles y barrios donde las niñas y los niños puedan jugar tranquilos y las familias puedan caminar sin miedo.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">👂</div>
+        <h3>Comunidad que se escucha</h3>
+        <p>Vecinas y vecinos que se escuchan, se ayudan y construyen acuerdos reales, juntos, desde su colonia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="registro" id="registro">
+  <div class="wrap">
+    <h2>Súmate al equipo</h2>
+    <p class="intro">Déjanos tu nombre y tu WhatsApp para sumarte. Al enviar el formulario, WhatsApp se abrirá automáticamente con el mensaje ya redactado; solo tendrás que tocar Enviar dentro de WhatsApp.</p>
+
+    <form id="form-registro" novalidate>
+      <label for="nombre">Nombre completo *</label>
+      <input id="nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre completo">
+
+      <label for="whatsapp">WhatsApp *</label>
+      <input id="whatsapp" name="whatsapp" type="tel" required autocomplete="tel" placeholder="Tu número de WhatsApp">
+
+      <label for="correo">Correo (opcional)</label>
+      <input id="correo" name="correo" type="email" autocomplete="email" placeholder="Tu correo electrónico">
+
+      <button class="btn" type="submit">Quiero sumarme</button>
+    </form>
+
+    <div class="success" id="success" role="status">
+      <h3>¡Gracias por sumarte! 💜</h3>
+      <p>WhatsApp se abrió automáticamente con el mensaje ya redactado. Si WhatsApp no se abrió solo, toca aquí:</p>
+      <a class="btn btn-green" id="wa-button" href="#" target="_blank" rel="noopener">Enviar mis datos por WhatsApp</a>
+      <small>Se abrirá WhatsApp con el mensaje ya redactado; solo toca Enviar dentro de WhatsApp.</small>
+      <br>
+      <button class="btn btn-outline" id="reset-button" type="button">Registrar a otra persona</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="lema">El Partido de la Familia, la Solidaridad, la Vida, la Paz y la Reconciliación</p>
+    <p class="social">
+      <a href="https://www.facebook.com/profile.php?id=61585742783236" target="_blank" rel="noopener">Facebook: Dr. Carlos Palma Marin</a>
+      <a href="https://www.facebook.com/partidoPAZoficial" target="_blank" rel="noopener">Facebook: Partido PAZ</a>
+    </p>
+    <p class="tags">#TehuacanMerecePaz &nbsp; #DrCarlosPalmaMarin &nbsp; #DrCarlosPalma</p>
+    <p class="privacy">Aviso de privacidad: los datos que compartes (nombre, WhatsApp y correo) se usan únicamente para contactarte sobre sumarte al movimiento por la paz de Tehuacán. No se comparten con terceros para otros fines.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('form-registro');
+  var success = document.getElementById('success');
+  var waButton = document.getElementById('wa-button');
+  var resetButton = document.getElementById('reset-button');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var nombre = document.getElementById('nombre').value.trim();
+    var whatsapp = document.getElementById('whatsapp').value.trim();
+    var correo = document.getElementById('correo').value.trim();
+
+    if (!nombre || !whatsapp) {
+      alert('Por favor escribe tu nombre completo y tu WhatsApp.');
+      return;
+    }
+
+    var mensaje = 'Hola, ' + nombre + ' está interesado en sumarse al movimiento por la paz de Tehuacán. WhatsApp: ' + whatsapp;
+    if (correo) {
+      mensaje += ' Correo: ' + correo;
+    }
+
+    var waUrl = 'https://wa.me/522211983184?text=' + encodeURIComponent(mensaje);
+    waButton.href = waUrl;
+
+    // Abrir WhatsApp de inmediato, dentro del gesto del envío, para que el
+    // navegador lo permita. El mensaje no se envía solo: el visitante aún
+    // debe tocar Enviar dentro de WhatsApp.
+    window.open(waUrl, '_blank');
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  resetButton.addEventListener('click', function () {
+    form.reset();
+    success.style.display = 'none';
+    form.style.display = 'block';
+    document.getElementById('nombre').focus();
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -65,7 +65,6 @@
   .registro { background: #f7f1f8; padding: 56px 0; }
   .registro h2 { color: #682575; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; text-align: center; margin-bottom: 10px; }
   .registro .intro { text-align: center; max-width: 640px; margin: 0 auto 28px; }
-  .form-embed { display: block; width: 100%; max-width: 640px; height: 858px; margin: 0 auto; border: 0; border-radius: 16px; background: #ffffff; box-shadow: 0 8px 24px rgba(104,37,117,.12); }
   form { background: #ffffff; max-width: 560px; margin: 0 auto; padding: 28px; border-radius: 16px; box-shadow: 0 8px 24px rgba(104,37,117,.12); }
   label { display: block; font-weight: 700; color: #682575; margin-bottom: 6px; }
   input {
@@ -154,9 +153,29 @@
 <section class="registro" id="registro">
   <div class="wrap">
     <h2>Súmate al equipo</h2>
-    <p class="intro">Déjanos tu nombre, tu colonia y tu WhatsApp para sumarte. Al enviar el formulario verás un botón para escribirnos por WhatsApp y completar tu registro.</p>
+    <p class="intro">Déjanos tu nombre y tu WhatsApp para sumarte. Al enviar el formulario, WhatsApp se abrirá automáticamente con el mensaje ya redactado; solo tendrás que tocar Enviar dentro de WhatsApp.</p>
 
-    <iframe class="form-embed" src="https://docs.google.com/forms/d/e/1FAIpQLSetvusnTbCBkKQavCnvSH54L1etraQmCjEBCvSyryWl_P6QSg/viewform?embedded=true" width="640" height="858" frameborder="0" marginheight="0" marginwidth="0" title="Formulario para sumarte">Cargando…</iframe>
+    <form id="form-registro" novalidate>
+      <label for="nombre">Nombre completo *</label>
+      <input id="nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre completo">
+
+      <label for="whatsapp">WhatsApp *</label>
+      <input id="whatsapp" name="whatsapp" type="tel" required autocomplete="tel" placeholder="Tu número de WhatsApp">
+
+      <label for="correo">Correo (opcional)</label>
+      <input id="correo" name="correo" type="email" autocomplete="email" placeholder="Tu correo electrónico">
+
+      <button class="btn" type="submit">Quiero sumarme</button>
+    </form>
+
+    <div class="success" id="success" role="status">
+      <h3>¡Gracias por sumarte! 💜</h3>
+      <p>WhatsApp se abrió automáticamente con el mensaje ya redactado. Si WhatsApp no se abrió solo, toca aquí:</p>
+      <a class="btn btn-green" id="wa-button" href="#" target="_blank" rel="noopener">Enviar mis datos por WhatsApp</a>
+      <small>Se abrirá WhatsApp con el mensaje ya redactado; solo toca Enviar dentro de WhatsApp.</small>
+      <br>
+      <button class="btn btn-outline" id="reset-button" type="button">Registrar a otra persona</button>
+    </div>
   </div>
 </section>
 
@@ -168,9 +187,54 @@
       <a href="https://www.facebook.com/partidoPAZoficial" target="_blank" rel="noopener">Facebook: Partido PAZ</a>
     </p>
     <p class="tags">#TehuacanMerecePaz &nbsp; #DrCarlosPalmaMarin &nbsp; #DrCarlosPalma</p>
-    <p class="privacy">Aviso de privacidad: los datos que compartes (nombre, colonia, WhatsApp y correo) se usan únicamente para contactarte sobre sumarte al movimiento por la paz de Tehuacán. No se comparten con terceros para otros fines.</p>
+    <p class="privacy">Aviso de privacidad: los datos que compartes (nombre, WhatsApp y correo) se usan únicamente para contactarte sobre sumarte al movimiento por la paz de Tehuacán. No se comparten con terceros para otros fines.</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var form = document.getElementById('form-registro');
+  var success = document.getElementById('success');
+  var waButton = document.getElementById('wa-button');
+  var resetButton = document.getElementById('reset-button');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var nombre = document.getElementById('nombre').value.trim();
+    var whatsapp = document.getElementById('whatsapp').value.trim();
+    var correo = document.getElementById('correo').value.trim();
+
+    if (!nombre || !whatsapp) {
+      alert('Por favor escribe tu nombre completo y tu WhatsApp.');
+      return;
+    }
+
+    var mensaje = 'Hola, ' + nombre + ' está interesado en sumarse al movimiento por la paz de Tehuacán. WhatsApp: ' + whatsapp;
+    if (correo) {
+      mensaje += ' Correo: ' + correo;
+    }
+
+    var waUrl = 'https://wa.me/522211983184?text=' + encodeURIComponent(mensaje);
+    waButton.href = waUrl;
+
+    // Abrir WhatsApp de inmediato, dentro del gesto del envío, para que el
+    // navegador lo permita. El mensaje no se envía solo: el visitante aún
+    // debe tocar Enviar dentro de WhatsApp.
+    window.open(waUrl, '_blank');
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  resetButton.addEventListener('click', function () {
+    form.reset();
+    success.style.display = 'none';
+    form.style.display = 'block';
+    document.getElementById('nombre').focus();
+  });
+})();
+</script>
 
 </body>
 </html>
